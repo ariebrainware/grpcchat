@@ -10,7 +10,7 @@ RUN mkdir -p /grpcchat/proto
 WORKDIR /grpcchat
 
 COPY ./proto/service.pb.go /grpcchat/proto
-COPY ./main.go /grpcchat/
+COPY ./server/main.go /grpcchat/
 
 COPY go.mod . 
 COPY go.sum .
