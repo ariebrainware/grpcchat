@@ -1,7 +1,7 @@
 FROM golang:1.12.7-alpine as build-env
 
 ENV GO111MODULE=on
-
+EXPOSE 8080
 RUN apk update && apk add --no-cache bash ca-certificates git gcc g++ libc-dev
 
 RUN mkdir /grpcchat
@@ -19,3 +19,4 @@ RUN go mod download
 RUN go build -o chatserver .
 
 CMD ./chatserver 
+
