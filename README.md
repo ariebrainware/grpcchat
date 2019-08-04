@@ -4,17 +4,6 @@ Build with Golang, gRPC, and live inside Docker Container. Use `chatserver` as t
 
 
 ## Build and use the binary
-1. Using `go module`
-
-```
-export GO111MODULE=on
-go get github.com/ariebrainware/grpcchat
-cd $GOPATH/pkg/mod/github.com/ariebrainware/grpcchat@v1.0.0/
-go build -o chatserver ./server/main.go && ./chatserver
-go build -o chatclient ./client/main.go && ./chatclient # open new terminal and connect as client
-```
-
-2. Without `go module`
 
 ```
 go get github.com/ariebrainware/grpcchat
