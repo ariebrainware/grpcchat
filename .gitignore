@@ -1,2 +1,4 @@
 client/chatclient
 server/chatserver
+chatclient-windowsX64
+chatserver-windowsX64
