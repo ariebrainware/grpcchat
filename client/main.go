@@ -42,7 +42,7 @@ func connect(user *proto.User) error {
 		for {
 			msg, err := str.Recv()
 			if err != nil {
-				streamerror = fmt.Errorf("Error readiong message: %v", err)
+				streamerror = fmt.Errorf("Error reading message: %v", err)
 				break
 			}
 			fmt.Printf("%v : %s\n", msg.Id, msg.Content)
