@@ -53,8 +53,9 @@ func (s *Server) BroadcastMessage(ctx context.Context, msg *proto.Message) (*pro
 			defer wait.Done()
 
 			if conn.active {
+				grpcLog.Info("Sending message from user: ", msg.Name)
 				err := conn.stream.Send(msg)
-				grpcLog.Info("Sending message to: ", conn.stream)
+				grpcLog.Info("Sending message to stream: ", conn.stream)
 
 				if err != nil {
 					grpcLog.Errorf("Error with Stream: %v - Error: %v", conn.stream, err)
