@@ -9,8 +9,9 @@ message User {
 
 message Message {
   string id = 1;
-  string content = 2;
-  string timestamp= 3;
+  string name = 2;
+  string content = 3;
+  string timestamp= 4;
 }
 
 message Connect {

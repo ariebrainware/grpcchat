@@ -42,10 +42,10 @@ func connect(user *proto.User) error {
 		for {
 			msg, err := str.Recv()
 			if err != nil {
-				streamerror = fmt.Errorf("Error readiong message: %v", err)
+				streamerror = fmt.Errorf("Error reading message: %v", err)
 				break
 			}
-			fmt.Printf("%v : %s\n", msg.Id, msg.Content)
+			fmt.Printf("%v : %s\n", msg.Name, msg.Content)
 		}
 	}(stream)
 
@@ -56,12 +56,14 @@ func main() {
 	timestamp := time.Now()
 	done := make(chan int)
 
-	name := flag.String("N", "Anon", "The name of the user")
-	flag.Parse()
+	name := flag.String("n", "Anon", "The name of the user")
+	host := flag.String("h", "localhost", "Host ip for chat server")
 
 	id := sha256.Sum256([]byte(timestamp.String() + *name))
 
-	conn, err := grpc.Dial("localhost:8080", grpc.WithInsecure())
+	flag.Parse()
+
+	conn, err := grpc.Dial(fmt.Sprintf("%s:8080", *host), grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("Couldnt connect to service: %v", err)
 	}
@@ -81,6 +83,7 @@ func main() {
 		for scanner.Scan() {
 			msg := &proto.Message{
 				Id:        user.Id,
+				Name:      *name,
 				Content:   scanner.Text(),
 				Timestamp: timestamp.String(),
 			}
